@@ -1,0 +1,22 @@
+.search-list-display {
+  background-color: #fff;
+  overflow: hidden;
+}
+.search-result-count {
+  margin-bottom: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 14px;
+  color: gray;
+}
+.no-search-result {
+  height: 100vh;
+  text-align: center;
+  color: gray;
+}
+.search-list-component {
+  height: 100vh;
+  margin-bottom: 20px;
+  background-color: #fff;
+  overflow: scroll;
+}

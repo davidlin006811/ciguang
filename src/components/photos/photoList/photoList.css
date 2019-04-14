@@ -1,0 +1,33 @@
+.photo-menu-title,
+.photo-menu-count,
+.photo-menu-btn {
+  width: 33.3%;
+  height: 30px;
+  padding-top: 5px;
+  text-align: center;
+  float: left;
+
+  margin-bottom: 5px;
+}
+.photo-menu-title {
+  padding-left: 15px;
+  text-align: left;
+}
+.photo-menu-btn {
+  padding-right: 15px;
+  padding-top: 0;
+  text-align: right;
+}
+.photo-menu-btn a,
+.photo-menu-btn a:hover,
+.photo-menu-btn a:active,
+.photos-list-component a:hover {
+  text-decoration: none;
+}
+.photos-list-component a:hover {
+  color: black;
+}
+.photo-menu-btn img {
+  width: 20px;
+  height: 20px;
+}

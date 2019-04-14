@@ -1,0 +1,12 @@
+.news-list {
+  background-color: #fff;
+  overflow: hidden;
+}
+.news-list-component {
+  margin-top: 0;
+  padding-top: 3px;
+  padding-bottom: 80px;
+  background-color: #f2f3f8;
+  height: 100vh;
+  overflow: scroll;
+}

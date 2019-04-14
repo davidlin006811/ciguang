@@ -1,0 +1,109 @@
+.ad-component {
+  width: 100%;
+  height: 38px;
+  background-color: #fff;
+}
+.ad-header {
+  height: 38px;
+}
+.ad-logo,
+.app-open {
+  width: 42%;
+  height: 38px;
+  margin: 0;
+  padding-top: 11px;
+  float: left;
+}
+.app-open {
+  padding-top: 7px;
+}
+.app-open span {
+  width: 70px;
+  height: 24px;
+  padding-top: 0;
+  background-color: #ff2e3a;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
+  display: inline-block;
+}
+.app-open {
+  text-align: right;
+}
+.ad-logo {
+  font-size: 18px;
+  padding-top: 4px;
+}
+.ad-logo img {
+  width: 22px;
+  margin-top: 2px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.ad-body,
+.ad-body-landscape {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  z-index: 9999999999999999;
+  text-align: center;
+}
+
+.ad-item,
+.ad-item-landscape {
+  width: 64px;
+}
+.ad-body p {
+  padding-top: 10px;
+  font-size: 20px;
+}
+.ad-body-landscape p {
+  padding-top: 20px;
+  font-size: 16px;
+}
+.ad-item {
+  margin-top: 40% !important;
+  margin-bottom: 20px;
+  width: 128px !important;
+}
+.ad-item-landscape {
+  margin: 10px auto;
+}
+li {
+  display: block;
+}
+.add-close {
+  width: 8%;
+  min-width: 24px;
+
+  text-align: center;
+  float: left;
+}
+.add-close img {
+  width: 20px;
+  margin-top: 8px;
+}
+.ad-sub-close {
+  width: 100%;
+  height: 50px;
+  padding-right: 20px;
+  text-align: right;
+}
+.ad-sub-close img {
+  width: 30px;
+}
+@media screen and (max-width: 320px) {
+  .ad-log img {
+    width: 16px;
+  }
+  .ad-logo {
+    font-size: 16px;
+  }
+}

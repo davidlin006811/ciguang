@@ -1,0 +1,108 @@
+.video-component,
+.radio-component,
+.news-component {
+  background-color: #f2f3f8;
+  z-index: 1;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.video-menu {
+  width: 100%;
+  height: 40px;
+  margin-top: 40px;
+}
+.vido-list-area {
+  background-color: #f2f3f8;
+  overflow: hidden;
+}
+.video-list-component,
+.photo-list-component {
+  width: 100% !important;
+  padding-top: 10px;
+  background-color: #f2f3f8;
+}
+
+.video-list-component p,
+.photo-list-component p {
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+.focus-video,
+.focus-photo {
+  text-align: center;
+  padding: 5px 14px;
+  padding-bottom: 0;
+  background-color: white;
+  color: black;
+  display: block;
+}
+.videos-update {
+  font-size: 14px;
+  color: #a1a1a1;
+}
+
+.video-item-right {
+  padding-right: 14px;
+}
+.video-item {
+  width: 50vw;
+  padding: 7px 0;
+  color: black;
+  background-color: white;
+  display: block;
+  float: left;
+}
+.left {
+  padding-left: 4vw;
+  padding-right: 1vw;
+}
+.right {
+  padding-left: 1vw;
+  padding-right: 4vw;
+}
+.video-item img {
+  width: 45vw;
+  height: 25.3vw;
+}
+.video-list-div {
+  background-color: white;
+}
+.video-component .swiper-slide {
+  display: block;
+}
+
+.video-top-level .active {
+  border-bottom: 2px solid #efa947;
+}
+.radio-top-level .active {
+  border-bottom: 2px solid #8fbd1d;
+}
+.photo-top-level .active {
+  border-bottom: 2px solid #9369be;
+}
+.active a,
+.video-list-component a:hover,
+.video-list-component a:active {
+  text-decoration: none;
+  color: black;
+}
+#tabList {
+  background-color: #f2f3f8;
+}
+.video-list-component .infinite-scroll-component {
+  background-color: white;
+}
+.seperate-div,
+.seperate-div-less {
+  width: 100%;
+  height: 95px;
+  background-color: #f2f3f8;
+}
+.seperate-div-less {
+  height: 50px;
+}

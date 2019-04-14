@@ -1,0 +1,77 @@
+.resolution-selection {
+  background-color: white;
+  height: 100px;
+  text-align: left;
+}
+.resolution-item {
+  width: 25%;
+  height: 50px;
+  padding: 20px 0;
+  text-align: center;
+  background-color: white;
+  display: inline-block;
+}
+.resolution-item button {
+  width: 80%;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  outline: 0;
+}
+.resolution-unselected {
+  background-color: #f2f3f8;
+}
+.resolution-selected {
+  color: white;
+  background-color: #ff6692;
+}
+.special-live-share {
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99999999999;
+}
+.special-live-title,
+.special-program-btn,
+.special-live-date {
+  width: 33%;
+  text-align: left;
+  padding-left: 5%;
+  padding-top: 10px;
+  height: 40px;
+  color: #ff4040;
+
+  float: left;
+}
+.special-live-date {
+  padding-left: 0;
+  color: grey;
+  text-align: center;
+  width: 40%;
+}
+.special-program-btn {
+  width: 20%;
+  color: grey;
+  padding-left: 0;
+  padding-right: 5%;
+  text-align: right;
+  float: right;
+}
+.resolution-setting {
+  text-align: right;
+  padding-right: 120px;
+  margin-top: 15px;
+  height: 35px;
+  color: gray;
+}
+.ad-poster {
+  position: relative;
+  height: 50px;
+}
+@media screen and (max-width: 320px) {
+  .special-live-title,
+  .special-program-btn,
+  .special-live-date {
+    font-size: 14px;
+  }
+}

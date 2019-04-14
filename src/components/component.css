@@ -1,0 +1,190 @@
+.clearfix {
+  content: "";
+  display: block;
+  clear: both;
+}
+.banner {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+.banner-title,
+.video-banner-title,
+.radio-banner-title,
+.photo-banner-title,
+.special-banner-title {
+  background-color: #00a9c7;
+  height: 50px;
+  padding-left: -10px;
+  margin-top: 0;
+  padding-top: 15px;
+  color: white;
+  text-align: center;
+  font-weight: 700;
+}
+.banner-title h5,
+.video-banner-title h5,
+.radio-banner-title h5,
+.special-banner-title h6,
+.bannder-title h6 {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.video-banner-title,
+.radio-banner-title {
+  padding-top: 0;
+  background-color: #efa947;
+  height: 30px;
+}
+.radio-banner-title {
+  background-color: #8fbd1d;
+}
+.photo-banner-title {
+  background-color: #9369be;
+}
+.special-banner-title {
+  background-color: #ff6692;
+}
+.banner-title a {
+  color: white;
+  width: 100%;
+}
+.return-btn {
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  padding-left: 10px;
+  background-color: transparent;
+  border: none;
+}
+.return-btn a {
+  width: 100%;
+  color: white;
+  text-decoration: none;
+}
+.return-btn button {
+  background-color: inherit;
+  color: white;
+  padding-left: 0;
+}
+.no-access {
+  width: 100%;
+  min-height: 100%;
+  padding: 20px 20px;
+  padding-top: 100%;
+  text-align: center;
+  /*background: url("./image/sorry_1.jpg") center repeat;*/
+  background-color: f6f6f6;
+}
+.no-access-title {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 80%;
+  height: 100px;
+}
+.no-access-title img {
+  width: 500px;
+  height: auto;
+}
+.no-access-title h3 {
+  color: red;
+  font-weight: bold;
+}
+.banner-nav {
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  text-align: center;
+  border-bottom: 1px solid #bcbcbc;
+  z-index: 100;
+}
+.banner-nav button {
+  width: 100%;
+  font-size: 14px;
+  padding-top: 2px;
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+}
+.banner-nav button i {
+  font-size: 20px;
+  padding-left: 3px;
+}
+.nav-tag {
+  width: 50%;
+  margin-top: 7px;
+  height: 26px;
+  float: left;
+}
+.selected a {
+  color: #00a9c7;
+}
+.share-component,
+.share-component-landscape {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 20%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 50000000000000;
+}
+.share-component-landscape {
+  padding-top: 0;
+}
+.share-component img,
+.share-component-landscape img {
+  width: 40px;
+}
+.video-share {
+  position: fixed;
+  margin-left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 5;
+  text-align: center;
+}
+.video-replay {
+  position: absolute;
+  margin-top: 30px;
+  width: 100%;
+  height: 80px;
+}
+.video-replay img {
+  position: relative;
+  width: 50px;
+}
+.video-replay span {
+  position: absolute;
+  font-size: 12px;
+  color: white;
+  display: inline-block;
+  margin-top: 26px;
+  margin-left: -36px;
+}
+.video-share-return-btn {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 0;
+  padding-top: 0;
+  padding-left: 3px;
+}
+.video-share-return-btn i {
+  font-size: 22px;
+  color: white;
+}
+@media screen and (min-width: 480px) {
+  .share-component {
+    padding-top: 10%;
+  }
+}

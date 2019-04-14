@@ -1,0 +1,153 @@
+.content {
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  text-align: left;
+  min-height: 100%;
+  padding: 20px;
+  padding-top: 60px;
+  padding-bottom: 2px;
+}
+#root {
+  background-color: white;
+}
+.content h5 {
+  font-weight: 700;
+}
+.content p {
+  font-size: 18px;
+}
+.content img {
+  margin: 10px auto;
+}
+.author {
+  font-size: 14px !important;
+  color: #777;
+  padding-top: 10px;
+}
+.articles-digest {
+  padding-bottom: 30px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  margin: 10px auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei";
+}
+p,
+a,
+button {
+  font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei",
+    sans-serif;
+}
+
+figure {
+  width: 100%; /*container-width*/
+  overflow: hidden; /*hide bounds of image */
+  margin: 0 auto; /*reset margin of figure tag*/
+}
+figure img {
+  display: block; /*remove inline-block spaces*/
+  width: 100%; /*make image streatch*/
+  margin-bottom: -25.75%;
+}
+ul {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.white {
+  color: white;
+}
+
+.font-size-select {
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.banner button {
+  border: none;
+  outline: none;
+}
+
+.font-size-select span {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #bcbcbc;
+  font-weight: bold;
+  margin-left: 10px;
+  text-align: center;
+  display: inline-block;
+}
+
+.no-active-btn {
+  background-color: white;
+  color: darkgrey;
+}
+.active-btn {
+  background-color: white;
+  border: 2px solid #00a9c7 !important;
+  color: #00a9c7;
+}
+.small-font,
+.middle-font,
+.large-font {
+  padding-top: 10px;
+  line-height: 2.1;
+  text-align: justify;
+}
+.small-font p,
+.middle-font p,
+.large-font p {
+  font-size: 14px;
+  padding-bottom: 5px;
+}
+.middle-font p {
+  font-size: 18px;
+}
+.large-font p {
+  font-size: 20px;
+}
+
+.large-icon {
+  font-size: 20px;
+}
+.detail-banner {
+  height: 40px;
+  background-color: #00a9c7;
+  color: white;
+  padding-top: 8px;
+  text-align: center;
+}
+.detail-banner .return-btn {
+  text-align: left;
+}
+.detail-title {
+  padding: 0 45px;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 768px) {
+  h5 {
+    font-size: 18px;
+  }
+}
+@media screen and (nim-width: 1023 px) {
+  h5 {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,76 @@
+.pic-component {
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+
+.pic-component .swiper-slide img {
+  margin-top: 0;
+  padding-top: 0;
+  width: 100%;
+  height: auto;
+}
+.slide-show-play img {
+  margin: 0;
+  padding: 0;
+  width: 24px;
+}
+.slide-show-play {
+  padding-right: 20px;
+  text-align: right;
+}
+.pic-component .return-btn a {
+  padding-top: 10px;
+  display: inline-block;
+}
+.pic-navigation {
+  height: 180px;
+  padding-top: 30px;
+}
+.pic-navigation-landscape {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+  z-index: 1000;
+}
+.return-btn i {
+  color: white;
+  padding-top: 3px;
+}
+.slideshow-volume-hint {
+  position: fixed;
+  top: 20px;
+  left: 25%;
+  width: 160px;
+  height: 40px;
+  background-color: black;
+  color: white;
+}
+.slideshow-volume-hint img {
+  width: 24px;
+  margin-right: 10px;
+}
+.pic-bottom-menu {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  left: 0;
+  bottom: 0;
+}
+
+.pic-download,
+.pic-share {
+  width: 50%;
+  height: 50px;
+  text-align: center;
+  display: inline-block;
+}
+.pic-download img,
+.pic-share img {
+  width: 24px;
+}
+.pic-download img {
+  width: 28px;
+}

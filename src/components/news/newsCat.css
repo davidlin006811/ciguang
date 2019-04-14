@@ -1,0 +1,7 @@
+.news-top-level .active {
+  border-bottom: 2px solid #b6885d;
+}
+.news-top-level {
+  height: 100vh;
+  overflow: hidden;
+}

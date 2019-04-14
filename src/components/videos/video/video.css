@@ -1,0 +1,340 @@
+video {
+  width: 100%;
+  height: auto;
+}
+#currentVideo {
+  background-color: #000 !important;
+}
+.full-screen {
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100vw;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.video-return-btn {
+  margin-top: 0;
+  padding-top: 0;
+  padding-left: 3px;
+  display: inline-block;
+}
+.video-return-btn i {
+  font-size: 22px;
+  color: white;
+}
+.video-nav-landscape,
+.video-control-landscape {
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+}
+#videoNav span {
+  display: inline-block;
+}
+.video-menu-nav,
+.video-control-bar {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  padding-top: 5px;
+  color: white;
+  background-image: -webkit-linear-gradient(
+    90deg,
+    transparent 0,
+    rgba(0, 0, 0, 0.7)
+  );
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: none;
+  z-index: 10000000;
+}
+
+.video-control-bar {
+  padding-top: 0;
+  background-image: -webkit-linear-gradient(
+    -90deg,
+    transparent 0,
+    rgba(0, 0, 0, 0.5)
+  );
+}
+.waiting-video-ready,
+.waiting-video-ready-landscape {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 9999999;
+}
+.waiting-video-ready-landscape {
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+  top: 50%;
+  left: 50%;
+  height: 100%;
+}
+.waiting-video-ready img,
+.waiting-video-ready-landscape img {
+  position: relative;
+  width: 20%;
+  top: 30%;
+  height: auto;
+}
+.waiting-video-ready-landscape img {
+  height: 20%;
+  width: auto;
+}
+.volume-hint {
+  position: absolute;
+  margin-top: 0;
+  margin-left: 0;
+  width: auto;
+  height: 30px;
+  background-color: white;
+  z-index: 10000000;
+}
+.volume-hint img {
+  margin-top: 5px;
+  margin-right: 5px;
+  width: 20px;
+}
+.hide {
+  display: none;
+}
+.video-play-pause-btn,
+.video-screen-control-btn {
+  width: 15%;
+  height: auto;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  text-align: center;
+  padding-top: 0;
+  float: left;
+}
+
+.video-play-pause-btn img,
+.video-screen-control-btn img {
+  width: 24px;
+  height: auto;
+  display: inline-block;
+}
+.video-progress-bar {
+  width: 70%;
+  height: 100%;
+  text-align: center;
+  background-color: transparent;
+  padding-top: 20px;
+  float: left;
+}
+.progress-bar {
+  width: 100%;
+  height: 2px;
+  background-color: lightgray;
+}
+#videoProgress {
+  text-align: right;
+  height: 100%;
+  background-color: #fd7d02;
+}
+
+#progress-button {
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  top: -10px;
+  left: 5px;
+  float: right;
+  z-index: 20000001;
+}
+.progress-btn {
+  width: 12px;
+  height: 12px;
+  top: -6px;
+  position: relative;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+.display--current-video-time {
+  width: 100%;
+  height: 15px;
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+}
+.video-start-time,
+.video-end-time {
+  width: 50%;
+  height: 100%;
+  font-size: 12px;
+  color: white;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+}
+.video-end-time {
+  text-align: right;
+  display: inline-block;
+}
+
+.video-menu-nav span {
+  padding-left: 10px;
+}
+.nav-title {
+  width: 90%;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: inline-block;
+}
+marquee {
+  width: 92%;
+  height: 24px;
+  line-height: 24px;
+}
+marquee span {
+  font-size: 18px;
+  font-weight: 444;
+}
+.current-video-cat {
+  padding-left: 4%;
+  color: #a1a1a1;
+  text-align: left;
+  font-size: 12px;
+  border-bottom: 5px solid #f2f2f8;
+}
+.current-video-cat-info {
+  text-align: left;
+}
+
+.txt-seperate {
+  width: 4px;
+  height: 4px;
+  margin: 0 3px;
+  border-radius: 2px;
+  background-color: #a1a1a1;
+  display: inline-block;
+}
+.video-cat-info {
+  margin-top: 10px;
+}
+.video-cat-info div {
+  display: inline-block;
+}
+.video-cat-info img {
+  width: 5%;
+  height: auto;
+  margin-left: 1%;
+  margin-right: 4%;
+  display: inline-block;
+}
+.video-index,
+.video-index-active {
+  font-size: 14px;
+}
+.video-index-active {
+  color: #fd7d02;
+}
+.video-cat-video-list,
+.cat-video-detail {
+  margin-top: 10px;
+}
+.video-cat-video-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+.cat-video-detail {
+  position: relative;
+
+  margin-bottom: 10px;
+  overflow-y: scroll;
+}
+.detail-video-list {
+  width: 16.6%;
+  height: 60px;
+  text-align: center;
+  float: left;
+}
+.detail-video-list button {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+}
+#currentVideoInfo1 {
+  flex: 1;
+  overflow-y: hidden;
+}
+#currentVideoInfo1 {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: white;
+}
+.video-wrapper {
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh !important;
+  text-align: center;
+  overflow-y: hidden !important;
+  display: flex;
+  flex-direction: column;
+}
+.current-program-title {
+  background-color: white;
+  padding-top: 10px;
+}
+.resolution-selection-landscape {
+  width: 100px;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+}
+.resolution-selection-landscape span {
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+}
+.resolution-list-landscape {
+  position: absolute;
+  right: 4%;
+  bottom: 40px;
+  width: 100px;
+  height: 180px;
+  height: auto;
+  background-color: #444;
+  color: white;
+  z-index: 99999999999999999999;
+}
+.resolution-selected-item-landscap {
+  color: #fd7d02;
+}
+.resolution-list-landscape ul li {
+  height: 35px;
+  padding-top: 5px;
+}
+.black-bg {
+  background-color: #000 !important;
+}

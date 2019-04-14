@@ -1,0 +1,102 @@
+.search-title-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding-top: 10px;
+  background-color: #b6885d;
+  z-index: 100;
+}
+.go-back,
+.search-field,
+.search-btn {
+  width: 16%;
+  height: 30px;
+  padding-top: 3px;
+  text-align: center;
+  float: left;
+}
+
+.search-field {
+  width: 70%;
+  background-color: #fff;
+  padding-left: 10px;
+  border-radius: 10px;
+  text-align: left;
+}
+.go-back {
+  width: 14%;
+}
+.go-back i {
+  font-size: 26px;
+  color: white;
+}
+.search-field i {
+  color: grey;
+  padding-right: 5px;
+}
+.search-field input {
+  width: 82%;
+  height: 24px;
+  border: none;
+}
+.delete-all-txt {
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  display: inline-block;
+}
+.search-field input:focus {
+  outline: none;
+}
+.delete-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  display: inline-block;
+}
+.search-btn button {
+  width: 100%;
+  padding: 0;
+  outline: none;
+  border: none;
+  background-color: #b6885d;
+  color: white;
+}
+.keyword-item {
+  width: 100%;
+  height: 40px;
+  padding-top: 10px;
+  padding-left: 10px;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.keyword-index {
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  text-align: center;
+  margin-right: 10px;
+  color: #fff;
+  background-color: lightgray;
+  display: inline-block;
+}
+.keyword-index.highlight {
+  background-color: #ef6900;
+}
+.search-list {
+  margin-top: 50px;
+}
+.search-reuslt-component {
+  position: relative;
+  margin-top: 100px;
+  overflow: hidden;
+}
+@media screen and (max-width: 320px) {
+  .search-field i {
+    padding-right: 0;
+  }
+}
