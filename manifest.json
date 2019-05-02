@@ -1,0 +1,29 @@
+{
+  "short_name": "慈光",
+  "name": "慈光講堂",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "images/icons/icon-72x72.png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "images/icons/icon-96x96.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "images/icons/icon-128x128.png",
+      "sizes": "128x128"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "description": "一個以儒釋道為中心的中華傳統文化的教育平臺",
+  "orientation": "portrait-primary"
+}

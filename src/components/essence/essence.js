@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { isMobile } from "react-device-detect";
+//import { isMobile } from "react-device-detect";
 import { Link } from "react-router-dom";
 import qs from "qs";
 import {
@@ -202,188 +202,175 @@ class Essence extends Component {
   render() {
     //console.log(this.state);
     let catDisplay, tagDisplay, listDisplay, catMenu, tagMenu;
-    if (isMobile) {
-      //显示列表
-      if (this.state.catSelected) {
-        let catClass =
-          this.state.toolbar === "0"
-            ? "categroy-body no-cat-margin"
-            : "categroy-body";
-        catDisplay = (
-          <div className={catClass}>
-            <ul>
-              {this.state.catList.map(item => {
-                let title = item.title;
-                if (title.length > 21) {
-                  title = title.substring(0, 21) + "...";
-                }
-                return (
-                  <li key={item.id} className="categroy-list">
-                    <p
-                      href={item.url}
-                      className="cat-list-link"
-                      onClick={() => {
-                        this.selectCatItem(item);
-                      }}
-                    >
-                      {title}
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        );
 
-        catMenu = (
-          <button
-            onClick={() => this.openCat()}
-            style={{ backgroundColor: "white", color: "#00a9c7" }}
-          >
-            {this.state.categoryName}
-            <i className="iconfont" style={{ color: "#00a9c7" }}>
-              &#xe6b4;
-            </i>
-          </button>
-        );
-      } else {
-        catMenu = (
-          <button
-            onClick={() => this.openCat()}
-            style={{ backgroundColor: "white" }}
-          >
-            {this.state.categoryName}
-            <i
-              className="iconfont"
-              style={{
-                fontSize: "18px",
-                color: "#bbb",
-                paddingLeft: "5px"
-              }}
-            >
-              &#xe6a4;
-            </i>
-          </button>
-        );
-      }
-      //显示标签
-      if (this.state.tagSelected) {
-        let tagClass =
-          this.state.toolbar === "0" ? "tag-body no-tag-margin" : "tag-body";
-        tagDisplay = (
-          <div className={tagClass}>
-            {this.state.tagList.map(item => (
-              <div key={item.id} className="tag-list">
-                <p
-                  href={item.url}
-                  className="tag-list-link"
-                  onClick={() => {
-                    this.selectTagItem(item);
-                  }}
-                >
-                  {item.title}
-                </p>
-              </div>
-            ))}
-          </div>
-        );
-        tagMenu = (
-          <button
-            onClick={() => this.openTag()}
-            style={{ backgroundColor: "white", color: "#00a9c7" }}
-          >
-            {this.state.tagName}
-            <i
-              className="iconfont"
-              style={{
-                fontSize: "18px",
-                color: "#00a9c7",
-                paddingLeft: "5px"
-              }}
-            >
-              &#xe6b4;
-            </i>
-          </button>
-        );
-      } else {
-        tagMenu = (
-          <button
-            onClick={() => this.openTag()}
-            style={{ backgroundColor: "white" }}
-          >
-            {this.state.tagName}
-            <i
-              className="iconfont"
-              style={{
-                fontSize: "18px",
-                color: "#bbb",
-                paddingLeft: "5px"
-              }}
-            >
-              &#xe6a4;
-            </i>
-          </button>
-        );
-      }
-      //显示文章列表
-      if (!this.state.catSelected && !this.state.tagSelected) {
-        listDisplay = (
-          <EssenceList
-            api={this.state.api}
-            sort="no_sort"
-            toolbar={this.state.toolbar}
-          />
-        );
-      }
-      //是否显示顶部
-      let titleArea = null;
-      if (this.state.toolbar !== "0") {
-        titleArea = (
-          <div className="banner-title">
-            <div className="return-btn">
-              <Link to="/">
-                <i
-                  className="iconfont"
-                  style={{ fontSize: "20px", fontWeight: "700" }}
-                >
-                  &#xe66f;
-                </i>
-              </Link>
-            </div>
-            <h5>精華</h5>
-          </div>
-        );
-      }
-      return (
-        <div className="essences-component">
-          <div className="banner clearfix">
-            {titleArea}
-            <div className="banner-nav">
-              <div
-                className="nav-tag"
-                style={{ borderRight: "1px solid #bbb" }}
-              >
-                {catMenu}
-              </div>
-              <div className="nav-tag">{tagMenu}</div>
-            </div>
-          </div>
-          {catDisplay}
-          {tagDisplay}
-          <div className="seperate-div" />
-          {listDisplay}
+    //显示列表
+    if (this.state.catSelected) {
+      let catClass =
+        this.state.toolbar === "0"
+          ? "categroy-body no-cat-margin"
+          : "categroy-body";
+      catDisplay = (
+        <div className={catClass}>
+          <ul>
+            {this.state.catList.map(item => {
+              let title = item.title;
+              if (title.length > 21) {
+                title = title.substring(0, 21) + "...";
+              }
+              return (
+                <li key={item.id} className="categroy-list">
+                  <p
+                    href={item.url}
+                    className="cat-list-link"
+                    onClick={() => {
+                      this.selectCatItem(item);
+                    }}
+                  >
+                    {title}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       );
+
+      catMenu = (
+        <button
+          onClick={() => this.openCat()}
+          style={{ backgroundColor: "white", color: "#00a9c7" }}
+        >
+          {this.state.categoryName}
+          <i className="iconfont" style={{ color: "#00a9c7" }}>
+            &#xe6b4;
+          </i>
+        </button>
+      );
     } else {
-      return (
-        <div className="no-access">
-          <div className="no-access-title">
-            <img src={errorImg} alt="系统错误" />
-            <h3>此網站只支持移動設備，敬請包涵！</h3>
+      catMenu = (
+        <button
+          onClick={() => this.openCat()}
+          style={{ backgroundColor: "white" }}
+        >
+          {this.state.categoryName}
+          <i
+            className="iconfont"
+            style={{
+              fontSize: "18px",
+              color: "#bbb",
+              paddingLeft: "5px"
+            }}
+          >
+            &#xe6a4;
+          </i>
+        </button>
+      );
+    }
+    //显示标签
+    if (this.state.tagSelected) {
+      let tagClass =
+        this.state.toolbar === "0" ? "tag-body no-tag-margin" : "tag-body";
+      tagDisplay = (
+        <div className={tagClass}>
+          {this.state.tagList.map(item => (
+            <div key={item.id} className="tag-list">
+              <p
+                href={item.url}
+                className="tag-list-link"
+                onClick={() => {
+                  this.selectTagItem(item);
+                }}
+              >
+                {item.title}
+              </p>
+            </div>
+          ))}
+        </div>
+      );
+      tagMenu = (
+        <button
+          onClick={() => this.openTag()}
+          style={{ backgroundColor: "white", color: "#00a9c7" }}
+        >
+          {this.state.tagName}
+          <i
+            className="iconfont"
+            style={{
+              fontSize: "18px",
+              color: "#00a9c7",
+              paddingLeft: "5px"
+            }}
+          >
+            &#xe6b4;
+          </i>
+        </button>
+      );
+    } else {
+      tagMenu = (
+        <button
+          onClick={() => this.openTag()}
+          style={{ backgroundColor: "white" }}
+        >
+          {this.state.tagName}
+          <i
+            className="iconfont"
+            style={{
+              fontSize: "18px",
+              color: "#bbb",
+              paddingLeft: "5px"
+            }}
+          >
+            &#xe6a4;
+          </i>
+        </button>
+      );
+    }
+    //显示文章列表
+    if (!this.state.catSelected && !this.state.tagSelected) {
+      listDisplay = (
+        <EssenceList
+          api={this.state.api}
+          sort="no_sort"
+          toolbar={this.state.toolbar}
+        />
+      );
+    }
+    //是否显示顶部
+    let titleArea = null;
+    if (this.state.toolbar !== "0") {
+      titleArea = (
+        <div className="banner-title">
+          <div className="return-btn">
+            <Link to="/">
+              <i
+                className="iconfont"
+                style={{ fontSize: "20px", fontWeight: "700" }}
+              >
+                &#xe66f;
+              </i>
+            </Link>
           </div>
+          <h5>精華</h5>
         </div>
       );
     }
+    return (
+      <div className="essences-component">
+        <div className="banner clearfix">
+          {titleArea}
+          <div className="banner-nav">
+            <div className="nav-tag" style={{ borderRight: "1px solid #bbb" }}>
+              {catMenu}
+            </div>
+            <div className="nav-tag">{tagMenu}</div>
+          </div>
+        </div>
+        {catDisplay}
+        {tagDisplay}
+        <div className="seperate-div" />
+        {listDisplay}
+      </div>
+    );
   }
 }
 export default Essence;

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import withRouter from "react-router-dom/es/withRouter";
-import { isMobile } from "react-device-detect";
+//import { isMobile } from "react-device-detect";
 import qs from "qs";
 import { PreTxt } from "../../commonConst";
 import { removeUrlAmp } from "../../commonFunctions";
@@ -169,109 +169,96 @@ class EssenceDetail extends PureComponent {
 
   /* render digest div and detail article content div*/
   renderDivs() {
-    if (isMobile) {
-      let titleArea, loadingDisplay;
-      if (this.state.toolbar !== "0") {
-        let bannerColor =
-          this.props.match.path === "/news/:id" ? "#b6885d" : "#00a9c7";
-        titleArea = (
-          <div
-            className="banner detail-banner clearfix"
-            style={{ backgroundColor: bannerColor }}
-          >
-            <div className="return-btn">
-              <button
-                onClick={() => {
-                  this.props.history.goBack();
-                }}
-              >
-                <i className="iconfont" style={{ fontSize: "20px" }}>
-                  &#xe66f;
-                </i>
-              </button>
-            </div>
-            <div className="detail-title">
-              {this.state.selectedArticle.title}
-            </div>
-          </div>
-        );
-      } else {
-        titleArea = <div />;
-      }
-      if (this.state.loading === true) {
-        loadingDisplay = (
-          <div style={{ paddingTop: "30%", paddingLeft: "25%" }}>
-            <img src={loadingImg} alt=" 正在载入中" style={{ width: "30px" }} />
-            <span
-              style={{
-                paddingLeft: "10px",
-                fontSize: "14px",
-                fontWeight: "bold"
+    let titleArea, loadingDisplay;
+    if (this.state.toolbar !== "0") {
+      let bannerColor =
+        this.props.match.path === "/news/:id" ? "#b6885d" : "#00a9c7";
+      titleArea = (
+        <div
+          className="banner detail-banner clearfix"
+          style={{ backgroundColor: bannerColor }}
+        >
+          <div className="return-btn">
+            <button
+              onClick={() => {
+                this.props.history.goBack();
               }}
             >
-              正在載入中， 請稍等...
-            </span>
+              <i className="iconfont" style={{ fontSize: "20px" }}>
+                &#xe66f;
+              </i>
+            </button>
           </div>
-        );
-      } else {
-        loadingDisplay = (
-          <div id="contentTop" className="content">
-            <h5>{this.state.selectedArticle.title}</h5>
-            <p className="author">{this.state.selectedArticle.author}</p>
-            <div className="font-size-select clearfix">
-              <span
-                className={this.state.smallBtn}
-                onClick={() => this.changeFontSize("small-font")}
-                style={{ backgroundColor: this.state.smallBtn }}
-              >
-                小
-              </span>
-
-              <span
-                className={this.state.middleBtn}
-                onClick={() => this.changeFontSize("middle-font")}
-                style={{ backgroundColor: this.state.middleBtn }}
-              >
-                中
-              </span>
-              <span
-                className={this.state.largeBtn}
-                onClick={() => this.changeFontSize("large-font")}
-                style={{ backgroundColor: this.state.largeBtn }}
-              >
-                大
-              </span>
-            </div>
-            <div
-              className={this.state.fontSize}
-              dangerouslySetInnerHTML={this.createContentMarkup(
-                this.state.selectedArticle.content
-              )}
-            />
-          </div>
-        );
-      }
-      let ad;
-      if (this.state.showAD) {
-        ad = <AD closeAd={this.closeAd} bgColor="#00a9c7" color="#fff" />;
-      }
-      return (
-        <React.Fragment>
-          {titleArea}
-          {ad}
-          {loadingDisplay}
-        </React.Fragment>
+          <div className="detail-title">{this.state.selectedArticle.title}</div>
+        </div>
       );
     } else {
-      return (
-        <div className="no-access">
-          <div className="no-access-title">
-            <img src={errorImg} alt="系统错误" />
-            <h3>此網站只支持移動設備，敬請包涵！</h3>
+      titleArea = <div />;
+    }
+    if (this.state.loading === true) {
+      loadingDisplay = (
+        <div style={{ paddingTop: "30%", paddingLeft: "25%" }}>
+          <img src={loadingImg} alt=" 正在载入中" style={{ width: "30px" }} />
+          <span
+            style={{
+              paddingLeft: "10px",
+              fontSize: "14px",
+              fontWeight: "bold"
+            }}
+          >
+            正在載入中， 請稍等...
+          </span>
+        </div>
+      );
+    } else {
+      loadingDisplay = (
+        <div id="contentTop" className="content">
+          <h5>{this.state.selectedArticle.title}</h5>
+          <p className="author">{this.state.selectedArticle.author}</p>
+          <div className="font-size-select clearfix">
+            <span
+              className={this.state.smallBtn}
+              onClick={() => this.changeFontSize("small-font")}
+              style={{ backgroundColor: this.state.smallBtn }}
+            >
+              小
+            </span>
+
+            <span
+              className={this.state.middleBtn}
+              onClick={() => this.changeFontSize("middle-font")}
+              style={{ backgroundColor: this.state.middleBtn }}
+            >
+              中
+            </span>
+            <span
+              className={this.state.largeBtn}
+              onClick={() => this.changeFontSize("large-font")}
+              style={{ backgroundColor: this.state.largeBtn }}
+            >
+              大
+            </span>
           </div>
+          <div
+            className={this.state.fontSize}
+            dangerouslySetInnerHTML={this.createContentMarkup(
+              this.state.selectedArticle.content
+            )}
+          />
         </div>
       );
     }
+    let ad;
+    if (this.state.showAD) {
+      ad = <AD closeAd={this.closeAd} bgColor="#00a9c7" color="#fff" />;
+    }
+    return (
+      <React.Fragment>
+        {titleArea}
+        {ad}
+        {loadingDisplay}
+      </React.Fragment>
+    );
   }
 
   renderContent() {

@@ -1,0 +1,248 @@
+.vjs-tech {
+  width: 100% !important;
+  height: auto !important;
+}
+.mask {
+  position: absolute;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1000000000;
+}
+.hide {
+  display: none;
+}
+.video-loading {
+  position: absolute;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 2px;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+}
+.video-loading img {
+  margin: 0;
+  margin-top: 22%;
+  width: 40px;
+}
+.full-screen {
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100vw;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.video-return-btn {
+  margin-top: 0;
+  padding-top: 0;
+  padding-left: 3px;
+  display: inline-block;
+}
+.video-return-btn i {
+  font-size: 22px;
+  color: white;
+}
+.video-nav-landscape,
+.video-control-landscape {
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+}
+#videoNav span {
+  display: inline-block;
+}
+.video-menu-nav,
+.video-control-bar {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  padding-top: 5px;
+  color: white;
+  background-image: -webkit-linear-gradient(
+    90deg,
+    transparent 0,
+    rgba(0, 0, 0, 0.7)
+  );
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: none;
+  z-index: 10000000;
+}
+
+.video-control-bar {
+  padding-top: 0;
+  background-image: -webkit-linear-gradient(
+    -90deg,
+    transparent 0,
+    rgba(0, 0, 0, 0.5)
+  );
+}
+.volume-hint {
+  position: absolute;
+  margin-top: 0;
+  margin-left: 0;
+  width: auto;
+  height: 30px;
+  background-color: white;
+  z-index: 10000000;
+}
+.volume-hint img {
+  margin-top: 5px;
+  margin-right: 5px;
+  width: 20px;
+}
+.video-play-pause-btn,
+.video-screen-control-btn {
+  width: 15%;
+  height: auto;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  text-align: center;
+  padding-top: 10px;
+  float: left;
+}
+
+.video-play-pause-btn img,
+.video-screen-control-btn img {
+  width: 24px;
+  height: auto;
+  margin-right: 3%;
+  display: inline-block;
+}
+
+.text-right-align {
+  width: 100%;
+  padding-top: 20px;
+  text-align: right;
+}
+.video-progress-bar {
+  width: 70%;
+  height: 100%;
+  text-align: center;
+  background-color: transparent;
+  padding-top: 20px;
+  float: left;
+}
+.progress-bar {
+  width: 100%;
+  height: 2px;
+  background-color: lightgray;
+}
+#videoProgress {
+  text-align: right;
+  height: 100%;
+  background-color: #fd7d02;
+}
+
+#progress-button {
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  top: -10px;
+  left: 5px;
+  float: right;
+  z-index: 20000001;
+}
+.progress-btn {
+  width: 12px;
+  height: 12px;
+  top: 2px;
+  position: relative;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+.display--current-video-time {
+  width: 100%;
+  height: 15px;
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+}
+.video-start-time,
+.video-end-time {
+  width: 50%;
+  height: 100%;
+  font-size: 12px;
+  color: white;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+}
+.video-end-time {
+  text-align: right;
+  display: inline-block;
+}
+
+.video-menu-nav span {
+  padding-left: 10px;
+}
+.nav-title {
+  width: 90%;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: inline-block;
+}
+/*Landscape*/
+.mask-full-screen {
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  width: 100vh !important;
+  height: 100vw !important;
+}
+.background-full-screen {
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100vw !important;
+  width: 100vh !important;
+}
+.background-full-screen div,
+.background-full-screen video {
+  height: 100vw !important;
+  width: auto !important;
+}
+.mask-nav-landscape {
+  width: 100vh;
+  top: 0;
+  margin-left: 0 !important;
+  margin: 0;
+}
+.mask-control-landscape {
+  width: 100vh !important;
+  bottom: 0;
+  margin-left: 0 !important;
+  margin: 0;
+}
+.full-screen {
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+  width: 100vh !important;
+  height: 100vw !important;
+}
+.video-full-screen {
+  width: 100vh !important;
+  height: 100vw !important;
+}
+.video-return-btn {
+  margin-left: 3px;
+  width: 20px;
+  display: inline-block;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { isMobile } from "react-device-detect";
+//import { isMobile } from "react-device-detect";
 import qs from "qs";
 import MenuBar from "../menubar/menubar";
 import { VideoCategory1API, PreTxt } from "../commonConst";
@@ -249,54 +249,54 @@ class Videos extends Component {
 
   render() {
     let navigation, bodyPart, menu;
-    if (isMobile) {
-      if (this.state.topLevelList.length > 0) {
-        menu = (
-          <MenuBar
-            enableList={this.state.topLevelList}
-            availableList={this.state.availableList}
-            cat={this.state.cat}
-            menu={this.state.menu}
-            selectMenu={this.selectMenu}
-            editMenuFinish={this.editMenu}
-          />
-        );
-        navigation = (
-          <Navigation
-            list={this.state.topLevelList}
-            activeTabPosition={this.state.activeTabPosition}
-            toolbar={this.state.toolbar}
-            showMenuBar={this.showMenuBar}
-          />
-        );
-        bodyPart = (
-          <div className="video-list-component">
-            <div
-              className="swiper-container swiper-container-horizontal"
-              id="tabList"
-            >
-              <div className="swiper-wrapper">
-                {this.state.topLevelList.map((item, index) => {
-                  let active =
-                    index === this.state.activeTabPosition ? true : false;
-                  return (
-                    <div className="swiper-slide" key={index}>
-                      <VideoList
-                        id={item.id}
-                        url={item.url}
-                        active={active}
-                        key={item.id}
-                        update={active}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+
+    if (this.state.topLevelList.length > 0) {
+      menu = (
+        <MenuBar
+          enableList={this.state.topLevelList}
+          availableList={this.state.availableList}
+          cat={this.state.cat}
+          menu={this.state.menu}
+          selectMenu={this.selectMenu}
+          editMenuFinish={this.editMenu}
+        />
+      );
+      navigation = (
+        <Navigation
+          list={this.state.topLevelList}
+          activeTabPosition={this.state.activeTabPosition}
+          toolbar={this.state.toolbar}
+          showMenuBar={this.showMenuBar}
+        />
+      );
+      bodyPart = (
+        <div className="video-list-component">
+          <div
+            className="swiper-container swiper-container-horizontal"
+            id="tabList"
+          >
+            <div className="swiper-wrapper">
+              {this.state.topLevelList.map((item, index) => {
+                let active =
+                  index === this.state.activeTabPosition ? true : false;
+                return (
+                  <div className="swiper-slide" key={index}>
+                    <VideoList
+                      id={item.id}
+                      url={item.url}
+                      active={active}
+                      key={item.id}
+                      update={active}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
-        );
-      }
+        </div>
+      );
     }
+
     let titleArea = null;
     if (this.state.toolbar !== "0") {
       titleArea = (
