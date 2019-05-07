@@ -6,7 +6,6 @@ import { PreTxt } from "../../commonConst";
 import { removeUrlAmp } from "../../commonFunctions";
 import AD from "../../ad/ad";
 import "./essence_detail.css";
-import errorImg from "../../image/sorry.jpg";
 import loadingImg from "../../image/loading.gif";
 
 class EssenceDetail extends PureComponent {

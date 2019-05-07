@@ -1,10 +1,10 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import favoriteNImg from "../../image/favorite-n.svg";
 import favoriteImg from "../../image/favorite.svg";
 import downloadImg from "../../image/download.svg";
 import shareImg from "../../image/share.svg";
 
-class VideoInfo extends PureComponent {
+class VideoInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,8 +23,16 @@ class VideoInfo extends PureComponent {
   showShare = () => {
     this.props.showShare();
   };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.totalCount !== this.props.totalCount) {
+      this.setState({
+        title: nextProps.title,
+        totalCount: nextProps.totalCount,
+        currentVideo: nextProps.currentVideo
+      });
+    }
+  }
   render() {
-    // console.log(this.props);
     let favImg = this.props.favorite ? favoriteImg : favoriteNImg;
     // let link = "/video-download/video-level2?catid=" + this.props.catId;
     return (

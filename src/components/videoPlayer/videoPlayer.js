@@ -9,7 +9,6 @@ import normalScreenImg from "./image/normal_screen.svg";
 import playImg from "./image/play.svg";
 import backImg from "./image/back.svg";
 import muteImg from "./image/mute.svg";
-import replayImg from "./image/replay.png";
 import pauseImg from "./image/pause.svg";
 import refreshImg from "./image/refresh.png";
 import "./videoPlayer.css";
@@ -17,17 +16,27 @@ import "./videoPlayer.css";
 export default class VideoPlayer extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
+    const poster = this.props.poster ? this.props.poster : posterImg;
     this.state = {
       title: props.title,
-      showAd: props.ad,
+      poster: poster,
+      selectedResolution: props.selectedResolution,
+      showDropDown: props.showDropDown,
       repeat: props.repeat,
       muted: true,
       isLandScape: false,
       videoEnd: false,
       isPlaying: false,
       fullScreen: false,
-      virtualMode: props.virtualMode
+      resList: props.resList,
+      allowShowResolutionMenu: false,
+      switchResolution: props.switchResolution,
+      virtualMode: props.virtualMode,
+      url: props.url,
+      hideControl: props.hideControl
     };
+
     this.mounted = true;
     this.lastTime = -1;
     this.tryTimes = 0;
@@ -35,27 +44,28 @@ export default class VideoPlayer extends React.Component {
     this.hideMenuTimeout = null;
     this.isVideoBreak = null;
     this.orientationTimer = null;
+    this.delayTimeToCheck = null;
+    this.delayTimeToPlay = null;
   }
   //返回上级菜单
   goBack = e => {
-    this.props.goBack();
+    let currentTime = this.player.currentTime();
+    this.props.goBack(currentTime);
   };
   turnOnVolume = () => {
-    if (this.state.muted) {
-      const videoId = "vjs_video_3_html5_api";
-
-      document.getElementById(videoId).muted = false;
-      this.setState({
-        muted: false
-      });
-    }
+    const videoId = this.player.id() + "_html5_api";
+    document.getElementById(videoId).muted = false;
+    this.setState({
+      muted: false
+    });
+    console.log(this.state);
   };
   showMenu = () => {
     this.turnOnVolume();
     let menuBar = $("#videoNav");
-    let controllBar = $("#videoContorl");
+    let controllBar = $("#videoControl");
     $("#videoNav").fadeIn();
-    $("#videoContorl").fadeIn();
+    $("#videoControl").fadeIn();
     let delayTime = this.isLandscape() ? 60000 : 10000;
     clearTimeout(this.hideMenuTimeout);
     this.hideMenuTimeout = setTimeout(() => {
@@ -120,7 +130,8 @@ export default class VideoPlayer extends React.Component {
     if (!this.state.virtualMode || !this.mounted) {
       return;
     }
-    let duration = document.getElementById("vjs_video_3_html5_api").duration;
+    let id = this.player.id() + "_html5_api";
+    let duration = document.getElementById(id).duration;
 
     if (duration == null) {
       return;
@@ -155,16 +166,19 @@ export default class VideoPlayer extends React.Component {
     });
 
     this.player.pause();
-    let type = this.props.virtualMode
+    /* let type = this.props.virtualMode
       ? "video/mp4"
       : "application/vnd.apple.mpegURL";
     this.player.src([
       {
         type: type,
-        src: this.props.url
+        src: this.state.url
       }
-    ]);
-    this.player.play();
+    ]);*/
+    clearTimeout(this.delayTimeToPlay);
+    this.delayTimeToPlay = setTimeout(() => {
+      this.player.play();
+    }, 3000);
   };
 
   //播放切换
@@ -195,7 +209,7 @@ export default class VideoPlayer extends React.Component {
       $("#vjs_video_3").addClass("full-screen");
       $("#vjs_video_3_html5_api").addClass("video-full-screen");
       $("#videoNav").addClass("mask-nav-landscape");
-      $("#videoContorl").addClass("mask-control-landscape");
+      $("#videoControl").addClass("mask-control-landscape");
       this.props.fullScreen();
     } else {
       $("#videoOuter").removeClass("mask-full-screen");
@@ -203,7 +217,7 @@ export default class VideoPlayer extends React.Component {
       $("#vjs_video_3").removeClass("full-screen");
       $("#vjs_video_3_html5_api").removeClass("video-full-screen");
       $("#videoNav").removeClass("mask-nav-landscape");
-      $("#videoContorl").removeClass("mask-control-landscape");
+      $("#videoControl").removeClass("mask-control-landscape");
       this.props.normalScreen();
     }
     let fullScreen = !this.state.fullScreen;
@@ -224,8 +238,55 @@ export default class VideoPlayer extends React.Component {
     this.player.play();
   };
 
+  checkVideoJam = () => {
+    if (this.state.isPlaying) {
+      clearInterval(this.isVideoBreak);
+
+      this.isVideoBreak = setInterval(() => {
+        let currentTime = this.player.currentTime();
+
+        if (currentTime === this.lastTime) {
+          this.tryTimes += 1;
+          if (this.tryTimes > 6) {
+            this.setState({
+              videoJam: true
+            });
+            this.tryTimes = 0;
+          }
+        } else {
+          this.lastTime = currentTime;
+          this.tryTimes = 0;
+          if (this.state.videoJam) {
+            this.setState({
+              videoJam: false
+            });
+          }
+        }
+      }, 500);
+    }
+  };
+  handleResolutionMenu = () => {
+    let status = !this.state.allowShowResolutionMenu;
+    this.setState({
+      allowShowResolutionMenu: status
+    });
+  };
+  setRes = item => {
+    console.log("set resolution: ", item);
+    this.setState({
+      allowShowResolutionMenu: false,
+      isPlaying: false
+    });
+    this.props.setRes(item);
+  };
+  getVideoType = url => {
+    let lastPos = url.lastIndexOf(".");
+    return url.slice(lastPos + 1);
+  };
+
   componentDidMount() {
     // instantiate Video.js
+    console.log(this.state);
     const option = {
       autoplay: true,
       controls: false,
@@ -233,9 +294,6 @@ export default class VideoPlayer extends React.Component {
       children: []
     };
 
-    let type = this.props.virtualMode
-      ? "video/mp4"
-      : "application/vnd.apple.mpegURL";
     this.player = videojs(this.videoNode, option, function onPlayerReady() {
       console.log("onPlayerReady", this);
 
@@ -243,15 +301,24 @@ export default class VideoPlayer extends React.Component {
         videoReady: true
       });
     });
+
+    let type =
+      this.getVideoType(this.state.url) === "mp4" || this.props.videoMode
+        ? "video/mp4"
+        : "application/vnd.apple.mpegURL";
+    console.log("video type: ", type);
     this.player.src([
       {
         type: type,
-        src: this.props.url
+        src: this.state.url
       }
     ]);
 
+    if (this.props.lastPlayTime && this.props.virtualMode) {
+      console.log("last play time: ", this.props.lastPlayTime);
+      this.player.currentTime(this.props.lastPlayTime);
+    }
     this.player.on("loadstart", () => {
-      console.log("load start");
       this.setState({
         loadstarting: true,
         reloadVideo: false,
@@ -259,7 +326,6 @@ export default class VideoPlayer extends React.Component {
       });
     });
     this.player.on("canplay", () => {
-      console.log("video can play");
       this.setState({
         needSeek: false,
         showBuffer: false,
@@ -267,9 +333,17 @@ export default class VideoPlayer extends React.Component {
         replay: false,
         isPlaying: true
       });
+      if (this.player.paused) {
+        this.player.play();
+      }
+      //视频卡顿及处理
+      clearTimeout(this.delayTimeToCheck);
+      this.delayTimeToCheck = setTimeout(this.checkVideoJam, 30000);
     });
     this.player.on("loadedmetadata", () => {
-      this.setDuration();
+      if (this.state.virtualMode) {
+        this.setDuration();
+      }
     });
     this.player.on("progress", () => {
       if (this.state.loadstarting) {
@@ -280,7 +354,11 @@ export default class VideoPlayer extends React.Component {
       }
     });
     //监听播放进度事件，更新播放进度
-    this.player.on("timeupdate", this.updateTime);
+    this.player.on("timeupdate", () => {
+      if (this.state.virtualMode) {
+        this.updateTime();
+      }
+    });
 
     // if (this.state.OS === "iOS") {
     this.player.on("seeking", () => {
@@ -320,64 +398,7 @@ export default class VideoPlayer extends React.Component {
         this.props.videoEnd();
       }
     });
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.url !== this.props.url) {
-      this.setState({
-        title: nextProps.title,
-        showAd: nextProps.ad,
-        repeat: nextProps.repeat,
-        videoEnd: false,
-        isPlaying: false
-      });
-      this.player.pause();
-      let type = nextProps.virtualMode
-        ? "video/mp4"
-        : "application/vnd.apple.mpegURL";
-      this.player.src([
-        {
-          type: type,
-          src: nextProps.url
-        }
-      ]);
-    } else if (nextProps.ad !== this.props.ad) {
-      this.setState({
-        showAd: nextProps.ad
-      });
-    }
-  }
-  componentDidUpdate() {
-    //视频卡顿及处理
-    clearInterval(this.isVideoBreak);
-    if (
-      !this.state.virtualMode &&
-      !this.state.showBuffer &&
-      this.state.isPlaying
-    ) {
-      this.isVideoBreak = setInterval(() => {
-        let currentTime = this.player.currentTime();
 
-        if (currentTime === this.lastTime) {
-          this.tryTimes += 1;
-          if (this.tryTimes > 6) {
-            this.setState({
-              videoJam: true
-            });
-            this.tryTimes = 0;
-          }
-        } else {
-          this.lastTime = currentTime;
-          this.tryTimes = 0;
-          if (this.state.videoJam) {
-            this.setState({
-              videoJam: false
-            });
-          }
-        }
-      }, 500);
-    }
-
-    clearInterval(this.orientationTimer);
     this.orientationTimer = setInterval(() => {
       let landScape = this.isLandscape();
       if (landScape !== this.state.isLandScape) {
@@ -387,6 +408,49 @@ export default class VideoPlayer extends React.Component {
       }
     }, 100);
   }
+  componentWillReceiveProps(nextProps) {
+    console.log("next props: ", nextProps);
+    if (
+      nextProps.url !== this.props.url ||
+      nextProps.selectedResolution !== this.props.selectedResolution
+    ) {
+      const poster = nextProps.poster ? nextProps.poster : posterImg;
+      this.setState({
+        title: nextProps.title,
+        poster: poster,
+        repeat: nextProps.repeat,
+        virtualMode: nextProps.virtualMode,
+        selectedResolution: nextProps.selectedResolution,
+        showDropDown: nextProps.showDropDown,
+        resList: nextProps.resList,
+        lastPlayTime: nextProps.lastPlayTime,
+        videoEnd: false,
+        isPlaying: false,
+        url: nextProps.url
+      });
+      //this.player.pause();
+      setTimeout(() => {
+        console.log(this.state);
+        let type =
+          this.getVideoType(nextProps.url) === "mp4" || nextProps.videoMode
+            ? "video/mp4"
+            : "application/vnd.apple.mpegURL";
+        console.log("video type: ", type);
+        this.player.src([
+          {
+            type: type,
+            src: this.state.url
+          }
+        ]);
+        if (nextProps.lastPlayTime && nextProps.virtualMode) {
+          console.log("last play time: ", nextProps.lastPlayTime);
+          this.player.currentTime(nextProps.lastPlayTime);
+        }
+        //this.player.play();
+      }, 300);
+    }
+  }
+
   // destroy player on unmount
   componentWillUnmount() {
     this.mounted = false;
@@ -394,9 +458,9 @@ export default class VideoPlayer extends React.Component {
     clearInterval(this.isVideoBreak);
     clearInterval(this.timer);
     clearTimeout(this.hideMenuTimeout);
-    if (this.player) {
-      this.player.dispose();
-    }
+    clearTimeout(this.delayTimeToCheck);
+    clearTimeout(this.delayTimeToPlay);
+    this.player.dispose();
   }
 
   render() {
@@ -406,7 +470,7 @@ export default class VideoPlayer extends React.Component {
     let videoHeight = this.state.isLandScape
       ? window.innerHeight
       : (window.innerWidth * 9) / 16;
-    console.log("video height: ", videoHeight);
+    // console.log("video height: ", videoHeight);
     let marginTop =
       this.state.showAd && !this.state.landScape && !this.state.fullScreen
         ? "39px"
@@ -414,7 +478,11 @@ export default class VideoPlayer extends React.Component {
     let loading;
 
     if (!this.state.videoJam) {
-      if (!this.state.isPlaying || this.state.needSeek) {
+      if (
+        !this.state.isPlaying ||
+        this.state.needSeek ||
+        this.state.switchResolution
+      ) {
         //视频没有准备好时显示载入画面
         let message;
         if (this.state.loadstarting) {
@@ -423,6 +491,8 @@ export default class VideoPlayer extends React.Component {
           message = "正在缓冲 ...";
         } else if (this.state.reloadVideo) {
           message = "正在重新加载 ...";
+        } else if (this.state.switchResolution) {
+          message = "正在切换到" + this.state.selectedResolution;
         } else if (this.state.needSeek) {
           message = "正在初始化视频...";
         } else {
@@ -467,8 +537,8 @@ export default class VideoPlayer extends React.Component {
       controlBarXPosition,
       controlBarYPosition,
       $el,
-      barWidth,
-      resolutionIconLandscape;
+      resolutionIconLandscape,
+      resolutionListLandscape;
 
     if (this.state.playing && !this.state.videoEnd) {
       playIcon = pauseImg;
@@ -481,9 +551,17 @@ export default class VideoPlayer extends React.Component {
       menuClass += " hide";
       controllClass += " hide";
     }
-    $el = $("#vjs_video_3_html5_api");
+    if (this.player) {
+      let id = "#" + this.player.id() + "_html5_api";
+      $el = $(id);
 
-    $el.height(videoHeight);
+      $el.height(videoHeight);
+      if (this.state.showDropDown) {
+        $el.hide();
+      } else {
+        $el.show();
+      }
+    }
 
     if (this.state.isPlaying) {
       //设置全屏/非全屏图标
@@ -500,8 +578,6 @@ export default class VideoPlayer extends React.Component {
         $("#videoProgress").width(progress);
       }
       //设置菜单栏和控制栏的位置
-      // let videoPosition = $el.position();
-      barWidth = $el.width();
 
       //非全屏状态
 
@@ -544,10 +620,14 @@ export default class VideoPlayer extends React.Component {
       }
       //渲染控制栏
 
-      if (this.state.virtualMode && !this.state.videoEnd) {
+      if (
+        this.state.virtualMode &&
+        !this.state.videoEnd &&
+        !this.state.hideControl
+      ) {
         controlBar = (
           <div
-            id="videoContorl"
+            id="videoControl"
             className={controllClass}
             style={{
               marginTop: controlBarYPosition,
@@ -592,7 +672,7 @@ export default class VideoPlayer extends React.Component {
             </div>
           </div>
         );
-      } else if (!this.state.virtualMode) {
+      } else if (!this.state.virtualMode && this.state.selectedResolution) {
         if (this.isLandscape() || this.state.fullScreen) {
           resolutionIconLandscape = (
             <div
@@ -608,11 +688,11 @@ export default class VideoPlayer extends React.Component {
         }
         controlBar = (
           <div
-            id="videoContorl"
+            id="videoControl"
             className={controllClass}
             style={{
               marginTop: controlBarYPosition,
-              marginLeft: "0"
+              marginLeft: controlBarXPosition
             }}
           >
             <div
@@ -622,6 +702,26 @@ export default class VideoPlayer extends React.Component {
               }}
             >
               {resolutionIconLandscape}
+              <img src={screenIcon} alt="screen-icon" />
+            </div>
+          </div>
+        );
+      } else if (this.state.hideControl) {
+        controlBar = (
+          <div
+            id="videoControl"
+            className={controllClass}
+            style={{
+              marginTop: controlBarYPosition,
+              marginLeft: controlBarXPosition
+            }}
+          >
+            <div
+              className="video-screen-control-btn text-right-align"
+              onClick={() => {
+                this.switchScreen();
+              }}
+            >
               <img src={screenIcon} alt="screen-icon" />
             </div>
           </div>
@@ -639,6 +739,36 @@ export default class VideoPlayer extends React.Component {
     } else {
       volumeHint = null;
     }
+    //设置分辨率列表
+    if (this.isLandscape() && this.state.allowShowResolutionMenu) {
+      let rightPos = window.innerWidth * 0.03 + 40;
+      let height = 35 * this.state.resList.length;
+
+      resolutionListLandscape = (
+        <div
+          className="resolution-list-landscape"
+          style={{ right: rightPos, height: height }}
+        >
+          <ul>
+            {this.state.resList.map((item, index) => {
+              let itemColor =
+                item === this.state.selectedResolution ? "#fd7d02" : "#fff";
+              return (
+                <li
+                  style={{ color: itemColor }}
+                  onClick={() => {
+                    this.setRes(item);
+                  }}
+                  key={index}
+                >
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    }
     return (
       <div>
         <div
@@ -652,6 +782,7 @@ export default class VideoPlayer extends React.Component {
           {menuBar}
           {volumeHint}
           {loading}
+          {resolutionListLandscape}
           {controlBar}
         </div>
         <div
@@ -659,12 +790,13 @@ export default class VideoPlayer extends React.Component {
           style={{
             width: videoWidth,
             height: videoHeight,
-            marginTop: marginTop
+            marginTop: marginTop,
+            backgroundColor: "#000"
           }}
         >
           <video
             ref={node => (this.videoNode = node)}
-            poster={posterImg}
+            poster={this.state.poster}
             width={videoWidth}
             height={videoHeight}
             x5-playsinline="true"

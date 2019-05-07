@@ -7,7 +7,7 @@ import AD from "../ad/ad";
 import Searches from "../search/searches";
 import LatestInfo from "../latest-info/latest-info";
 import TabMenu from "../tabMenu/tabMenu";
-import errorImg from "../image/sorry.jpg";
+//import errorImg from "../image/sorry.jpg";
 import "./home.css";
 import "../component.css";
 import liveImg from "../image/icon-live.png";
