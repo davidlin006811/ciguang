@@ -15,3 +15,6 @@ This mobile website was created by create-react-app, express, nodejs, videojs, a
 
 # Photo
 ![ciguang5](https://user-images.githubusercontent.com/22565449/59557911-e4ad6e80-8fb3-11e9-8cf0-a480cb441043.jpg)
+
+# News
+![ciguang6](https://user-images.githubusercontent.com/22565449/59557938-41a92480-8fb4-11e9-9058-d59ab6faf047.jpg)
