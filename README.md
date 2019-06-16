@@ -18,3 +18,6 @@ This mobile website was created by create-react-app, express, nodejs, videojs, a
 
 # News
 ![ciguang6](https://user-images.githubusercontent.com/22565449/59557938-41a92480-8fb4-11e9-9058-d59ab6faf047.jpg)
+
+# Share
+![ciguang7](https://user-images.githubusercontent.com/22565449/59557989-6225ae80-8fb5-11e9-990f-581f32f6a1ef.jpg)
