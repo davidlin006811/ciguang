@@ -1,5 +1,5 @@
 This mobile website is a Chinese traditional culture multimedia education and propagation platform. <br/>
-It was created by create-react-app, express, nodejs, videojs, and swiper.js, and supports Android and iOS devices. It contains essence articles, videos, radios, lives, photos, news, and special topics. Most contents can be shared and propagated in most Chinese social media such as Wechat, QQ, and Weibo.<br/>
+It was created by create-react-app, express, nodejs, videojs, and swiper.js, and supports Android and iOS devices. It contains essence articles, videos, radios, lives, photos, news, and special topics. Most contents can be shared and propagated in most Chinese social media platforms such as Wechat, QQ, and Weibo.<br/>
 
 # Home Page 
 ![ciguang1](https://user-images.githubusercontent.com/22565449/59557725-356e9880-8faf-11e9-807b-00eb377ff330.jpg)
