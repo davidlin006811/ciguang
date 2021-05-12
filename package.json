@@ -19,7 +19,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
-    "swiper": "^4.5.0",
+    "swiper": "^6.5.1",
     "tool-callapp": "^1.0.1",
     "video.js": "^7.4.1",
     "whatwg-fetch": "^3.0.0"
